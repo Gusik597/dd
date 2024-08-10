@@ -1,0 +1,56 @@
+import discord
+
+from discord.ext import commands
+import random
+
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Привет! Я бот {bot.user}!')
+choices = ['Глобальное потепление — это процесс повышения средней температуры земной поверхности и атмосферы',
+           'Глобальное потепление приводит к изменению погодных условий, что может вызвать экстремальные явления, такие как сильные дожди, засухи, ураганы и штормы.',
+           'Изменение климата может негативно сказаться на урожайности сельскохозяйственных культур, что приведет к росту цен на продовольствие и дефициту пищи.' ,
+           'Изменения климата могут способствовать распространению заболеваний, таких как малярия и лихорадка денге, и увеличивать частоту тепловых ударов и других заболеваний, связанных с экстремальными температурами',
+           'Изменения климата могут вызвать миграцию людей из-за ухудшения условий жизни, что может привести к гуманитарным кризисам и социальным напряжениям.',
+           'Глобальное потепление провоцируется несколькими ключевыми факторами, основными из которых являются человеческая деятельность и выбросы парниковых газов.',
+           'Сдерживание глобального потепления требует комплексного подхода, включающего как индивидуальные действия, так и масштабные политические и экономические меры']
+
+@bot.command()
+async def choose(ctx):
+    await ctx.send(random.choice(choices))
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+
+
+@bot.command()
+async def kartinka(ctx):
+    with open('2.jpeg', 'rb') as f:
+        # В переменную кладем файл, который преобразуется в файл библиотеки Discord!
+        picture = discord.File(f)
+   # Можем передавать файл как параметр!
+    await ctx.send(file=picture)
+
+@bot.group()
+async def cool(ctx):
+    """Says if a user is cool.
+
+    In reality this just checks if a subcommand is being invoked.
+    """
+    if ctx.invoked_subcommand is None:
+        await ctx.send(f'No, {ctx.subcommand_passed} is not cool')
+
+
+
+
+bot.run("MTIwMzIyNTQxMzg2Njg4OTI0Nw.GAPOlF.KaZWwNfLS8_J7rPTjLVoGNgOewydgPnNulcQRk")
