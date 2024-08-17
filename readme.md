@@ -1,1 +1,1 @@
-BOT O GLOBALNOM POTEPLENII
+Мой бот о глобальном потепление
