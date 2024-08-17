@@ -1,1 +1,1 @@
-bot kotoriy raskazivaet kak predotratit glogbalnoe poteplenie
+BOT O GLOBALNOM POTEPLENII
